@@ -30,7 +30,7 @@ You can follow along with the tutorials here: [Emran Codebox YouTube Channel](ht
 
    ```properties
    spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-   spring.datasource.url=jdbc:mysql://localhost:3306/ECB?createDatabaseIfNotExist=true
+   spring.datasource.url=jdbc:mysql://localhost:3306/springboot-bootcamp?createDatabaseIfNotExist=true
    spring.datasource.username=root
    spring.datasource.password=
 
@@ -53,6 +53,7 @@ You can follow along with the tutorials here: [Emran Codebox YouTube Channel](ht
 ## **Table of Class**
 
 1. [Class 1: Introduction to Spring Boot and Basic Setup](#class-1-introduction-to-spring-boot-and-basic-setup)
+2. [Class 2: Create Controller Service and Repository and basic Operation](#class-1-Create-Controller-Service-and-Repository-and-basic-Operation)
 
 ---
 
@@ -62,7 +63,6 @@ In this first class, we learned how to set up a Spring Boot project, configure M
 
 ---
 
-### **Topics Covered in Class 1:**
 
 - **Spring Boot Setup**:
   - Introduction to Spring Boot framework.
@@ -91,6 +91,48 @@ In this first class, we learned how to set up a Spring Boot project, configure M
 
 - **Application Configuration**:
   - Modifying `application.properties` for custom configurations like server port and SQL logging.
+
+
+
+
+## **Class 2: Creating Controller, Service, and Repository with Basic Operations**
+
+This class focuses on implementing the core layers of a Spring Boot application and performing basic CRUD operations. Below are the highlights of each component:
+
+**Controller Layer: `StudentController`**
+Handles HTTP requests and maps them to service methods.
+- **Get All Students**
+  - **URL**: `/api/student/`
+  - **Method**: `GET`
+  - Fetches all students and returns them as a list.
+
+- **Get Student by ID**
+  - **URL**: `/api/student/{id}`
+  - **Method**: `GET`
+  - Retrieves a specific student by their `id`.
+
+- **Save Student**
+  - **URL**: `/api/student/save`
+  - **Method**: `POST`
+  - Saves a new student record from the request body.
+
+**Service Layer: `StudentService`**
+Contains the business logic and acts as a bridge between the controller and the repository.
+- **Methods**:
+  - `getAllStudents`: Returns a list of all students.
+  - `getStudentById`: Fetches a specific student by `id`.
+  - `saveStudent`: Saves a new student record.
+
+**Repository Layer: `StudentRepository`**
+Handles database interactions using JPA.
+- **Extends**: `JpaRepository<Student, Integer>`
+  - `Student`: The entity class mapped to the database table.
+  - `Integer`: The data type of the primary key.
+
+**Key Highlights**
+- **Annotations**: Utilized Spring annotations like `@RestController`, `@Service`, and `@Repository` to define roles of each layer.
+- **Separation of Concerns**: Cleanly structured the project into three layers for maintainability.
+- **JPA Integration**: Leveraged Spring Data JPA for seamless database operations.
 
 ---
 

@@ -1,17 +1,20 @@
 package com.fmahadybd.springbootbootcamp.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+/**
+ * - Note: Lombok Give some problem on here. So we need create it in manual way
+ */
 @Entity
 @Table(name = "students")
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
+//
 /**
- * The @Data annotation from Lombok generates:
+ * The @Data annotati@NoArgsConstructor
+ * //@AllArgsConstructor
+ * //@Data
+ * //@Getter
+ * //@Setteron from Lombok generates:
  * - Getter and Setter methods for all fields.
  * - A toString() method.
  * - equals() and hashCode() methods.
@@ -29,9 +32,7 @@ public class Student {
      * The 'id' field can be null, which is useful when a Student object is created but not yet persisted in the database
      * (e.g., the 'id' may not be assigned until it is saved in the database).
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
 
     /**
      * IDENTITY:
@@ -45,8 +46,61 @@ public class Student {
      * AUTO is flexible and allows the persistence provider to decide on the best strategy.
      */
 
-    @Column(length = 30, nullable = false)
+//    @Column(length = 30, nullable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    @Column(length = 30)
     private String name;
+    private String email;
+    private String cellNo;
+
+    public Student() {
+
+    }
+
+    public Student(Integer id, String name, String email, String cellNo) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.cellNo = cellNo;
+    }
+
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCellNo() {
+        return cellNo;
+    }
+
+    public void setCellNo(String cellNo) {
+        this.cellNo = cellNo;
+    }
+
+
 
     /**
      * @Column:
@@ -55,7 +109,5 @@ public class Student {
      * - updatable = false: Specifies whether the column should be included in SQL UPDATE statements (default is true).
      * - columnDefinition = "VARCHAR(255) DEFAULT 'Unknown'": Specifies a custom SQL fragment used for the column definition (e.g., VARCHAR or INT).
      */
-    private String email;
 
-    private String cellNo;
 }
